@@ -27,6 +27,13 @@ export class TvMazeClient {
     return this.instance;
   }
 
+  shows() {
+    return this.request<Show[]>({
+      path: "/shows",
+      method: HttpMethod.GET,
+    });
+  }
+
   get singlesearch() {
     const self = this;
 
