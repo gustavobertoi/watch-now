@@ -22,7 +22,9 @@ export default {
     REGULAR: "Inter_300Light",
     MEDIUM: "Inter_500Medium",
     BOLD: "Inter_700Bold",
+    BLACK: "Inter_900Black",
     SIZES: {
+      LOGO: `${RFValue(30)}px`,
       H1: `${RFValue(22)}px`,
       H2: `${RFValue(20)}px`,
       H3: `${RFValue(18)}px`,

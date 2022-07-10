@@ -11,8 +11,32 @@ type MoviePreviewProps = {
   width: number;
 };
 
-export const Container = styled.ScrollView`
-  margin-top: 0px;
+export const Container = styled.ScrollView``;
+
+export const Logo = styled.Text`
+  color: ${({ theme }) => theme.COLORS.PRIMARY_900};
+  font-size: ${({ theme }) => theme.FONTS.SIZES.LOGO};
+  font-family: ${({ theme }) => theme.FONTS.BLACK};
+
+  margin-top: 50px;
+  text-align: center;
+`;
+
+export const TitleContainer = styled.View`
+  margin-top: 20px;
+  margin-left: 10px;
+
+  align-items: center;
+  flex-direction: row;
+`;
+
+export const Title = styled.Text`
+  color: ${({ theme }) => theme.COLORS.WHITE_900};
+  font-size: ${({ theme }) => theme.FONTS.SIZES.H2};
+  font-family: ${({ theme }) => theme.FONTS.BOLD};
+
+  margin-left: 8px;
+  margin-right: 8px;
 `;
 
 export const ShowCard = styled.View.attrs<CardProps>(({ width }) => ({
@@ -63,23 +87,19 @@ export const ShowStatusText = styled.Text`
 `;
 
 export const ShowInformation = styled.View`
-  justify-content: space-between;
-  align-items: flex-start;
   flex-direction: column;
-  margin-left: 10px;
-  margin-top: 10px;
 `;
 
 export const ShowTitle = styled.Text`
-  color: ${({ theme }) => theme.COLORS.WHITE_900};
-  font-size: ${({ theme }) => theme.FONTS.SIZES.H4};
+  color: ${({ theme }) => theme.COLORS.SECONDARY_900};
+  font-size: ${({ theme }) => theme.FONTS.SIZES.H3};
   font-family: ${({ theme }) => theme.FONTS.BOLD};
 `;
 
 export const ShowDescription = styled.Text`
-  color: ${({ theme }) => theme.COLORS.WHITE_900};
-  font-size: ${({ theme }) => theme.FONTS.SIZES.TEXT1};
-  font-family: ${({ theme }) => theme.FONTS.REGULAR};
+  color: ${({ theme }) => theme.COLORS.SECONDARY_900};
+  font-size: ${({ theme }) => theme.FONTS.SIZES.TEXT3};
+  font-family: ${({ theme }) => theme.FONTS.MEDIUM};
 
   margin-top: 10px;
 `;
@@ -104,4 +124,8 @@ export const ShowDetailsText = styled.Text`
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
 
   margin: 2px;
+`;
+
+export const ShowsContainer = styled.View`
+  margin-top: 30px;
 `;

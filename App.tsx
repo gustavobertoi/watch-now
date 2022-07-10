@@ -10,6 +10,7 @@ import {
   Inter_300Light,
   Inter_500Medium,
   Inter_700Bold,
+  Inter_900Black,
 } from "@expo-google-fonts/inter";
 
 import theme from "./src/theme";
@@ -29,6 +30,7 @@ export default function App() {
     Inter_300Light,
     Inter_500Medium,
     Inter_700Bold,
+    Inter_900Black,
   });
 
   if (!fontsLoaded) {
