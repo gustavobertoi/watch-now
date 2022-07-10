@@ -10,6 +10,9 @@ export default {
 
     BLACK_900: "#333333",
 
+    YELLOW_700: "#FFE947",
+    GREEN_900: "#1DB954",
+
     WHITE_900: "#FFFF",
 
     GRAY_500: "#C3C3C3",
@@ -26,6 +29,7 @@ export default {
       H4: `${RFValue(16)}px`,
       TEXT1: `${RFValue(14)}px`,
       TEXT2: `${RFValue(12)}px`,
+      TEXT3: `${RFValue(10)}px`,
     },
   },
 };
