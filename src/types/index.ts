@@ -24,12 +24,20 @@ export type GetSingleSearchShows = {
   q: string;
 };
 
-export type SingleSearchShowResult = {
+export type Show = {
   id: number;
+  language: string;
   name: string;
+  status: string;
   image: {
     medium: string;
     original: string;
   };
   summary: string;
+  network: {
+    name: string;
+    country: {
+      name: string;
+    };
+  };
 };

@@ -6,7 +6,7 @@ import {
   Request,
   Response,
   GetSingleSearchShows,
-  SingleSearchShowResult,
+  Show,
 } from "../types";
 
 export class TvMazeClient {
@@ -31,7 +31,7 @@ export class TvMazeClient {
     const self = this;
 
     async function shows({ q }: GetSingleSearchShows) {
-      return self.request<SingleSearchShowResult>({
+      return self.request<Show>({
         path: "/singlesearch/shows",
         method: HttpMethod.GET,
         params: {
