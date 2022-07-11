@@ -1,6 +1,6 @@
 # watch-now
 
-Watch now is an open source project built on top of the [TvMaze API](https://www.tvmaze.com/), which shows available shows to watch, as well as their seasons and episodes.
+Watch now is an open source mobile app built on top of the [TvMaze API](https://www.tvmaze.com/), which shows available shows to watch, as well as their seasons and episodes.
 
 Overview:
 
