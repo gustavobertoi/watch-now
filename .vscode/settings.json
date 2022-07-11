@@ -1,0 +1,45 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/.next": true,
+    ".yalc": true,
+    "node_modules": true,
+    "dist": true,
+    "coverage": true
+  },
+  "material-icon-theme.folders.associations": {
+    "integrations": "coverage",
+    "external-libs": "typescript",
+    "features": "jinja",
+    "github": "github",
+    "atlassian": "tasks",
+    "atlassian-connect": "tasks",
+    "http": "global",
+    "aggregates": "webpack",
+    "mongo": "docs",
+    "cqrs": "command",
+    "events": "event",
+    "enums": "examples",
+    "schemas": "class",
+    "dtos": "include",
+    "entities": "include",
+    "documents": "include",
+    "migrations": "gradle",
+    "contracts": "connection",
+    "interfaces": "connection",
+    "decorators": "quasar",
+    "publishers": "pipe",
+    "handlers": "azure-pipelines",
+    "connect": "plugin",
+    "domain": "plugin"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
