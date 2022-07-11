@@ -8,6 +8,7 @@ import {
   GetSingleSearchShows,
   Show,
   Season,
+  Episode,
 } from "../types";
 
 export class TvMazeClient {
@@ -26,6 +27,19 @@ export class TvMazeClient {
       this.instance = new TvMazeClient();
     }
     return this.instance;
+  }
+
+  get seasons() {
+    const self = this;
+
+    async function episodes(seasonId: number) {
+      return self.request<Episode[]>({
+        path: `/seasons/${seasonId}/episodes`,
+        method: HttpMethod.GET,
+      });
+    }
+
+    return { episodes };
   }
 
   get shows() {
