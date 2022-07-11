@@ -1,16 +1,18 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { FlatList, TouchableOpacity, useWindowDimensions } from "react-native";
 
-import { Entypo } from "@expo/vector-icons";
-import { Octicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+
+import { Entypo, Octicons } from "@expo/vector-icons";
 
 import { Layout } from "../../layout";
-import Badge, { BadgeColor } from "../../components/Badge";
-import ShowComponent from "../../components/Show";
+import Logo from "../../components/Logo";
+import { BadgeColor } from "../../components/Badge";
+import { ShowCard, ShowTileCard } from "../../components/Show";
+import { TitleContainer, Title } from "../../components/Title";
 
 import { useTvMaze } from "../../hooks";
 import { showMock } from "../../mocks";
-import { stripTags } from "../../utils";
 import { Show } from "../../types";
 
 import * as S from "./styles";
@@ -19,10 +21,15 @@ export default function Home() {
   const [shows, setShows] = useState<Show[]>([]);
   const [show, setShow] = useState<Show>(showMock);
 
-  const dimensions = useWindowDimensions();
+  const navigation = useNavigation();
+
   const client = useTvMaze();
 
-  const onPressShow = (show: Show) => {};
+  const onPressShow = (show: Show) => {
+    navigation.navigate("Seasons", {
+      show,
+    });
+  };
 
   const isDisabled = useCallback(() => {
     const { status } = show;
@@ -42,8 +49,8 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    client
-      .shows()
+    client.shows
+      .list()
       .then(({ isError, body }) => {
         if (isError) return;
         setShows(body);
@@ -54,45 +61,41 @@ export default function Home() {
   return (
     <Layout type="black">
       <S.Container>
-        <S.Logo>WATCH NOW</S.Logo>
+        <Logo />
 
-        <S.TitleContainer>
+        <TitleContainer>
           <Entypo name="progress-two" size={32} color="white" />
-          <S.Title>Soon</S.Title>
-        </S.TitleContainer>
+          <Title text="Soon" />
+        </TitleContainer>
 
-        <S.ShowCard width={dimensions.width}>
-          <S.ShowImagePreview
-            width={dimensions.width}
-            source={{
-              uri: show.image.original,
-            }}
-          >
-            <S.ShowInformation>
-              <S.ShowTitle>{show.name}</S.ShowTitle>
-              <S.ShowDescription>{stripTags(show.summary)}</S.ShowDescription>
-            </S.ShowInformation>
-            <Badge color={BadgeColor.SECONDARY} text={show.status} />
-          </S.ShowImagePreview>
-          <S.ShowActions>
-            <Badge
-              color={BadgeColor.PRIMARY}
-              icon="clock"
-              text="Episodes soon..."
-              disabled={isDisabled()}
-            />
-            <S.ShowDetails>
-              <S.ShowDetailsText>{`Language: ${show.language}`}</S.ShowDetailsText>
-              <S.ShowDetailsText>{`Network: ${show.network.name}`}</S.ShowDetailsText>
-              <S.ShowDetailsText>{`Country: ${show.network.country.name}`}</S.ShowDetailsText>
-            </S.ShowDetails>
-          </S.ShowActions>
-        </S.ShowCard>
+        <ShowCard
+          style={{
+            direction: "center",
+            color: "SECONDARY",
+          }}
+          show={{
+            name: show.name,
+            summary: show.summary,
+            image: show.image.original,
+            language: show.language,
+            status: show.status,
+            showStatus: isDisabled(),
+            networkName: show.network.name,
+            countryName: show.network.country.name,
+          }}
+          action={{
+            showAction: true,
+            icon: "clock",
+            color: BadgeColor.PRIMARY,
+            text: "Seasons soon...",
+            disabled: true,
+          }}
+        />
 
-        <S.TitleContainer>
+        <TitleContainer>
           <Octicons name="video" size={32} color="white" />
-          <S.Title> Available shows</S.Title>
-        </S.TitleContainer>
+          <Title text="Available shows" />
+        </TitleContainer>
 
         <S.ShowsContainer>
           <FlatList
@@ -101,11 +104,11 @@ export default function Home() {
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
               <TouchableOpacity onPress={() => onPressShow(item)}>
-                <ShowComponent key={item.id} image={item.image.original} />
+                <ShowTileCard key={item.id} image={item.image.original} />
               </TouchableOpacity>
             )}
-            showsVerticalScrollIndicator={false}
             bounces={false}
+            showsHorizontalScrollIndicator={false}
             horizontal
           />
         </S.ShowsContainer>
