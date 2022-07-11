@@ -6,14 +6,14 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
 
 import { PageHeader } from "../../components/PageHeader";
+import { ShowCard } from "../../components/Show";
 
 import { Layout } from "../../layout";
 import { useTvMaze } from "../../hooks";
 import { Season } from "../../types";
+import { SeasonsNavigationParams } from "../../types/navigation";
 
 import * as S from "./styles";
-import { ShowCard } from "../../components/Show";
-import { SeasonsNavigationParams } from "../../types/navigation";
 
 export default function Seasons() {
   const [seasons, setSeasons] = useState<Season[]>([]);
@@ -29,14 +29,15 @@ export default function Seasons() {
     navigation.navigate("Home");
   };
 
-  const onPressSeason = (season: Season) => {};
+  const onPressSeason = (season: Season) => {
+    navigation.navigate("Episodes", { season, show });
+  };
 
   useEffect(() => {
     client.shows
       .seasons(show.id)
       .then(({ isError, body }) => {
         if (isError) return;
-        console.log(body);
         setSeasons(body);
       })
       .catch(console.error);
@@ -52,11 +53,11 @@ export default function Seasons() {
           data={seasons}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => onPressSeason(item)}>
-              <S.Season width={dimensions.width}>
-                <S.SeasonTitle>{`Season ${item.number} ${
-                  item.name ? `- ${item.name}` : ""
-                }`}</S.SeasonTitle>
+            <S.Season width={dimensions.width}>
+              <S.SeasonTitle>{`Season ${item.number} ${
+                item.name ? `- ${item.name}` : ""
+              }`}</S.SeasonTitle>
+              <TouchableOpacity onPress={() => onPressSeason(item)}>
                 <S.SeasonImage
                   width={dimensions.width}
                   source={{
@@ -68,8 +69,8 @@ export default function Seasons() {
                 >
                   <AntDesign name="play" size={80} color="white" />
                 </S.SeasonImage>
-              </S.Season>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </S.Season>
           )}
           bounces={false}
           showsHorizontalScrollIndicator={false}
