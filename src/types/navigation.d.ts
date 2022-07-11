@@ -1,6 +1,11 @@
-import { Show } from "./index";
+import { Season, Show } from "./index";
 
-type EpisodesNavigationParams = {
+export type EpisodesNavigationParams = {
+  show: Show;
+  season: Season;
+};
+
+export type SeasonsNavigationParams = {
   show: Show;
 };
 
@@ -9,6 +14,7 @@ export declare global {
     interface RootParamList {
       Home: undefined;
       Episodes: EpisodesNavigationParams;
+      Seasons: SeasonsNavigationParams;
     }
   }
 }
