@@ -60,7 +60,10 @@ export default function Seasons() {
                 <S.SeasonImage
                   width={dimensions.width}
                   source={{
-                    uri: item?.image?.original ?? item.image?.medium,
+                    uri:
+                      item?.image?.original ??
+                      item.image?.medium ??
+                      show.image.original,
                   }}
                 >
                   <AntDesign name="play" size={80} color="white" />
@@ -85,8 +88,8 @@ export default function Seasons() {
             language: show.language,
             status: show.status,
             showStatus: false,
-            networkName: show.network.name,
-            countryName: show.network.country.name,
+            networkName: show.network?.name ?? "",
+            countryName: show.network?.country?.name ?? "",
           }}
           action={{
             showAction: false,
