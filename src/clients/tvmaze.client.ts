@@ -7,6 +7,7 @@ import {
   Response,
   GetSingleSearchShows,
   Show,
+  Season,
 } from "../types";
 
 export class TvMazeClient {
@@ -27,11 +28,24 @@ export class TvMazeClient {
     return this.instance;
   }
 
-  shows() {
-    return this.request<Show[]>({
-      path: "/shows",
-      method: HttpMethod.GET,
-    });
+  get shows() {
+    const self = this;
+
+    async function list() {
+      return self.request<Show[]>({
+        path: "/shows",
+        method: HttpMethod.GET,
+      });
+    }
+
+    async function seasons(showId: number) {
+      return self.request<Season[]>({
+        path: `/shows/${showId}/seasons`,
+        method: HttpMethod.GET,
+      });
+    }
+
+    return { list, seasons };
   }
 
   get singlesearch() {
