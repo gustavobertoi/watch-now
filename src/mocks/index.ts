@@ -1,5 +1,3 @@
-import { Show } from "../types";
-
 export const showMock = {
   id: 139,
   url: "https://www.tvmaze.com/shows/139/girls",

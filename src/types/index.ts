@@ -41,6 +41,19 @@ export interface Links {
   self: Self;
 }
 
+export interface Country {
+  name: string;
+  code: string;
+  timezone: string;
+}
+
+export interface Network {
+  id: number;
+  name: string;
+  country: Country;
+  officialSite?: any;
+}
+
 export type Show = {
   id: number;
   language: string;
@@ -49,12 +62,7 @@ export type Show = {
   image: Image;
   rating: Rating;
   summary: string;
-  network: {
-    name: string;
-    country: {
-      name: string;
-    };
-  };
+  network: Network;
 };
 
 export interface Season {
@@ -69,6 +77,21 @@ export interface Season {
   airstamp: Date;
   runtime: number;
   rating: Rating;
+  image: Image;
+  summary: string;
+  _links: Links;
+}
+
+export interface Episode {
+  id: number;
+  url: string;
+  number: number;
+  name: string;
+  episodeOrder: number;
+  premiereDate: string;
+  endDate: string;
+  network: Network;
+  webChannel?: any;
   image: Image;
   summary: string;
   _links: Links;
